@@ -14,12 +14,14 @@ def makeCard():
   card = pyCopyIgnoreColor(vertFlip(horiFlip(cornerDecor)), background, 2003, 1067, makeColor(255,0,0))
   card = pyCopyIgnoreColor(vertFlip(cornerDecor), background, 0, 1067, makeColor(255,0,0))
   
-  textStyle = makeStyle(serif, bold, 70)
+  textStyle = makeStyle(serif, bold, 85)
   addTextWithStyle(card, 500, 500, "Happy St. Patrick's Day Mom and Dad!", textStyle, makeColor(0, 180, 0))
-    
-  repaint(card)
-  
-  writePictureTo(card, getMediaPath() + "\card.jpg")
+  textStyle = makeStyle(serif, bold, 60)
+  addTextWithStyle(card, 550, 950, "-Your sons", textStyle, makeColor(0, 180, 0))
+      
+  #repaint(card)
+  print getMediaPath()
+  writePictureTo(card, getMediaPath() + "card.jpg")
 
 def pyCopyIgnoreColor(source, target, targetX, targetY, colorToIgnore):
   sWidth = getWidth(source)
@@ -40,9 +42,11 @@ def pyCopyIgnoreColor(source, target, targetX, targetY, colorToIgnore):
   return target
   
 def setMediaPathToCurrentDir():
-  #os.path.abspath(__file__) returns the full path and filename of this file
-  #where as os.path.dirname() strips the filename off of the full path
-  setMediaPath(os.path.dirname(os.path.abspath(__file__)))
+  fullPathToFile = os.path.abspath(__file__)
+  if fullPathToFile.startswith('/'):
+    setMediaPath(os.path.dirname(fullPathToFile))
+  else:
+    setMediaPath(os.path.dirname(fullPathToFile) + '\\')
 
 def horiFlip(pic):
   #get dimensions of photo
@@ -87,4 +91,4 @@ def shrinkPic(pic):
       oldPix = getPixel(pic, x, y)
       newPix = getPixel(canvas, x/2, y/2)
       setColor(newPix, getColor(oldPix))
-  return canvas
+  return canvas          
