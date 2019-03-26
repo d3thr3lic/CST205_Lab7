@@ -1,4 +1,25 @@
+##Lab #7
+##Mitchell and Nicholas Saunders
+
 import os #to allow access to os.path.abspath(__file__) and os.path.dirname
+
+##warmup for lab 7
+  
+def snowmanInDesert():
+  pic = background = makePicture(getMediaPath() + "Desert_photo.jpg")
+  pixels = getPixels(pic)
+  x =  400 #position of snowman
+  y =  400
+  diameter_x = 100 #size of snowman based on headsize
+  diameter_y = 100
+  addArcFilled(pic,x,y,diameter_x,diameter_y,0,360,white) #Top
+  addArcFilled(pic,x-(diameter_x/2),y+90,diameter_x*2,diameter_y*2,0,360,white) #Middle
+  addArcFilled(pic,x-diameter_x,y+250,diameter_x*3,diameter_y*3,0,360,white) #Bottom
+  
+  writePictureTo(pic, getMediaPath() + "snowmanInDesert.jpg")
+  repaint(pic)
+  
+
 
 def makeCard():
   #calls udf (user defined function) that will use setMediaPath() to define the working directory for later use
